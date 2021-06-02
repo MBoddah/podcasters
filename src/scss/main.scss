@@ -1,0 +1,376 @@
+//<MIXINS>==============================================================================================
+@mixin regular-font($size) {
+    font-family: $fontFamily, sans-serif;
+    font-size: $size;
+    font-weight: 500;
+    color: #fff;
+}
+
+@mixin light-font($size) {
+    font-family: $fontFamily, sans-serif;
+    font-size: $size;
+    font-weight: 300;
+    color: #bbb;
+}
+
+@mixin extra-font($size) {
+    font-family: $fontFamily, sans-serif;
+    font-size: $size;
+    font-weight: 700;
+    color: #fff;
+}
+//</MIXINS>=============================================================================================
+
+//<FONTS>===============================================================================================
+
+////<IMPORT FONTS>======================================================================================
+@import url(https://fonts.googleapis.com/css?family=Jura:300,regular,500,600,700&display=swap&subset=cyrillic-ext);
+//&display=swap&subset=cyrillic-ext\
+
+////</IMPORT FONTS>=====================================================================================
+
+////<ICON FONTS>========================================================================================
+@import url(./iconfont.scss);
+////</ICON FONTS>=======================================================================================
+
+////<DEFAULT FONT>======================================================================================
+$fontFamily: "Jura";
+////</DEFAULT FONT>=====================================================================================
+
+//</FONTS>==============================================================================================
+
+//<ANIMS>===============================================================================================
+
+@keyframes spin {
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+//</ANIMS>==============================================================================================
+
+//<VARIABLES>===========================================================================================
+$minWidth: 320;
+$maxWidth: 1920;
+$maxWidthContainer: 1170;
+$md1: $maxWidthContainer + 12;
+$md2: 991.98;
+$md3: 767.98;
+$md4: 479.98;
+//</VARIABLES>==========================================================================================
+
+//<NULL, GENERAL SETTINS>===============================================================================
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: $fontFamily;
+    text-decoration: none;
+    list-style-type: none;
+}
+
+html {
+    background-color: rgb(10, 10, 10);
+}
+
+body {
+    max-width: 1920px;
+    width: 100%;
+    min-width: 400px;
+    min-height: 100vh;
+    margin: auto;
+    font-size: 14px;
+    background-color: rgb(10, 10, 10);
+    &._lock{
+        overflow: hidden;
+    }
+}
+//</NULL, GENERAL SETTINS>===============================================================================
+
+//<WRAPPER>==============================================================================================
+.wrapper{
+    width: 100%;
+    min-height: 100%;
+    overflow: hidden;
+    display: flex;
+    flex-direction: row;
+    &._loaded{
+        visibility: visible;
+    }
+}
+//</WRAPPER>=============================================================================================
+
+//<CONTAINER>============================================================================================
+._container{
+    max-width: $maxWidthContainer + px;
+    margin: 0 auto;
+    @media (max-width: $md1+px) {
+        max-width: 970px;
+    }
+    @media (max-width: $md2+px) {
+        max-width: 750px;
+    }
+    @media (max-width: $md3+px) {
+        max-width: none;
+        padding: 0 10px;
+    }
+}
+//</CONTAINER>===========================================================================================
+
+.menu{
+    background-color: rgb(0,0,0);
+    position: fixed;
+    min-height: 100vh;
+    width: 400px;
+    z-index: 5;
+
+    &__wrapper{
+        height: 100vh;
+        justify-content: center;
+        flex-direction: column;
+        margin: auto;
+        max-width: 80%;
+    }
+
+    &__title{
+        @include extra-font(16px);
+        margin-bottom: 50px;
+    }
+
+    &__item{
+        @include light-font(20px);
+        margin-bottom: 10px;
+        a{
+            color: #aaa;
+            transition: all .3s;
+
+            &:hover{
+                color: #ddd;
+                letter-spacing: 3px;
+            }
+        }
+
+        &_active{
+            a{
+                color: #fff;
+                letter-spacing: 3px;
+            }
+        }
+    }
+}
+
+.content{
+    background-color: rgb(10, 10, 10);
+    position: relative;
+    min-height: 100vh;
+    padding-left: 400px;
+    width: 100%;
+    transition: all .5s;
+}
+
+.about{
+    display: flex;
+    position: relative;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    *:last-child{
+        margin-bottom: 0;
+    }
+
+    &__next{
+        right: 30px;
+        z-index: 2;
+        
+    }
+
+    &__prev{
+        z-index: 2;
+        left: 30px;
+    }
+
+    &__slider{
+        position: absolute;
+        left: 0;
+        top: 0;
+        display: flex;
+        flex-direction: row;
+        width: 300%;
+        height: 100vh;
+    }
+
+    &__slide{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        height: 100vh;
+    }
+    
+    &__wrapper{
+        position: relative;
+        min-height: 300px;
+        align-items: center;
+        justify-content: center;
+    }
+    &__image{
+        position: relative;
+        width: 250px;
+        height: 250px;
+        &::before{
+            content: "";
+            z-index: 2;
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            border-radius: 50%;
+            background: rgba($color: #000000, $alpha: .5);
+        }
+
+        &::after{
+            content: "";
+            z-index: 2;
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            border-radius: 50%;
+            box-shadow: -3px 8px 0px 0px rgba(245, 242, 242, 0.658);
+            animation: spin 15s linear infinite;
+        }
+        
+        img{
+            filter: grayscale(100%);
+            border-radius: 50%;
+            height: 100%;
+            width: 100%;
+            transition: all .5s;
+        }
+    }
+
+    &__text{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        height: 250px;
+        width: 600px;
+        margin-left: 50px;
+    }
+
+    &__title{
+        @include extra-font(40px);
+        margin-bottom: 15px;
+    }
+
+    &__text{
+        @include light-font(20px);
+    }
+
+    &__links{
+        display: flex;
+        flex-direction: row;
+    }
+}
+
+.links{
+    a{
+        font-size: 26px;
+        color: #ccc;
+        text-decoration: none;
+        margin: 30px 20px 0px 0px;
+        transition: all .5s;
+    }
+
+    a:hover{
+        color: #fff;
+    }
+}
+
+.arrow{
+    position: absolute;
+    transition: all .3s;
+    opacity: .4;
+    &:active{
+        opacity: 1;
+        transform: scale(0.96);
+    }
+    &:hover {
+        opacity: .7;
+    }
+}
+
+.home{
+    position: fixed;
+    display: flex;
+    position: relative;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    *:last-child{
+        margin-bottom: 0;
+    }
+
+    &__wrapper{
+        position: relative;
+        padding: 100px 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        width: 80%;
+    }
+
+    &__image{
+        height: 100%;
+        width: 100%;
+
+        img{
+            width: 100%;
+            filter: grayscale(100%);
+        }
+    }
+
+    &__information{
+        position: relative;
+        display: flex;
+        flex-direction: row;
+        margin-top: 70px;
+        width: 100%;
+    }
+
+    &__text{
+        flex-direction: column;
+        width: 90%
+    }
+
+    &__title{
+        margin-bottom: 40px;
+        @include extra-font(30px);
+    }
+
+    &__description{
+        @include light-font(20px);
+    }
+
+    &__links{
+        width: 10%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: flex-end;
+        
+        a{
+            font-size: 40px;
+        }
+    }
+}
+
+._hide{
+    opacity: 0;
+    transform: translateX(500px);
+}   

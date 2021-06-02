@@ -1,0 +1,78 @@
+@font-face {
+    font-family: 'icons';
+    font-display: swap;
+    src:  url('../../fonts/icons.woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: block;
+}
+
+[class^="_icon-"]::before, 
+[class*=" _icon-"]::before {
+    font-family: "icons" !important;
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    display: block;
+}
+
+._icon-like:before {
+    content: "\e9da";
+}
+._icon-play:before {
+    content: "\ea1c";
+}
+._icon-pause:before {
+    content: "\ea1d";
+}
+._icon-backward:before {
+    content: "\ea1f";
+}
+._icon-forward:before {
+    content: "\ea20";
+}
+._icon-volume-high:before {
+    content: "\ea26";
+}
+._icon-volume-medium:before {
+    content: "\ea27";
+}
+._icon-volume-low:before {
+    content: "\ea28";
+}
+._icon-volume-mute2:before {
+    content: "\ea2a";
+}
+._icon-insta:before {
+    content: "\ea92";
+}
+._icon-spotify:before {
+    content: "\ea94";
+}
+._icon-twitter:before {
+    content: "\ea96";
+}
+._icon-vk:before {
+    content: "\ea98";
+}
+._icon-sloud:before {
+    content: "\eac4";
+}
+._icon-y_music .path1:before {
+    content: "\e900";
+    color: rgb(0, 0, 0);
+}
+._icon-y_music .path2:before {
+    content: "\e901";
+    margin-left: -1em;
+    color: rgb(255, 255, 255);
+}
+._icon-y_music .path3:before {
+    content: "\e902";
+    margin-left: -1em;
+    color: rgb(125, 125, 125);
+}
