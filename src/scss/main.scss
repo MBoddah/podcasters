@@ -56,7 +56,8 @@ $maxWidthContainer: 1170;
 $md1: $maxWidthContainer + 12;
 $md2: 991.98;
 $md3: 767.98;
-$md4: 479.98;
+$md4: 559.98;
+$md5: 429.98;
 //</VARIABLES>==========================================================================================
 
 //<NULL, GENERAL SETTINS>===============================================================================
@@ -79,9 +80,10 @@ body {
     width: 100%;
     min-width: 400px;
     min-height: 100vh;
+    height: 100vh;
     margin: auto;
     font-size: 14px;
-    background-color: rgb(10, 10, 10);
+    background-color: rgb(20, 20, 20);
     &._lock{
         overflow: hidden;
     }
@@ -136,6 +138,9 @@ body {
     &__title{
         @include extra-font(16px);
         margin-bottom: 50px;
+        &-short{
+            display: none;
+        }
     }
 
     &__item{
@@ -161,7 +166,7 @@ body {
 }
 
 .content{
-    background-color: rgb(10, 10, 10);
+    background-color: rgb(20, 20, 20);
     position: relative;
     min-height: 100vh;
     padding-left: 400px;
@@ -181,14 +186,14 @@ body {
     }
 
     &__next{
-        right: 30px;
+        right: 5%;
         z-index: 2;
         
     }
 
     &__prev{
         z-index: 2;
-        left: 30px;
+        left: 5%;
     }
 
     &__slider{
@@ -258,7 +263,7 @@ body {
         flex-direction: column;
         justify-content: center;
         height: 250px;
-        width: 600px;
+        max-width: 450px;
         margin-left: 50px;
     }
 
@@ -280,7 +285,7 @@ body {
 .links{
     a{
         font-size: 26px;
-        color: #ccc;
+        color: #bbb;
         text-decoration: none;
         margin: 30px 20px 0px 0px;
         transition: all .5s;
@@ -295,6 +300,7 @@ body {
     position: absolute;
     transition: all .3s;
     opacity: .4;
+    cursor: pointer;
     &:active{
         opacity: 1;
         transform: scale(0.96);
@@ -312,7 +318,7 @@ body {
     justify-content: center;
     width: 100%;
     *:last-child{
-        margin-bottom: 0;
+        margin-bottom: 2%;
     }
 
     &__wrapper{
@@ -326,7 +332,6 @@ body {
     }
 
     &__image{
-        height: 100%;
         width: 100%;
 
         img{
@@ -363,6 +368,9 @@ body {
         flex-direction: column;
         justify-content: center;
         align-items: flex-end;
+        *:last-child{
+            margin-bottom: 0;
+        }
         
         a{
             font-size: 40px;
@@ -372,7 +380,7 @@ body {
 
 .podcasts{
     display: flex;
-    position: fixed;
+    //position: fixed;
     overflow-y: scroll;
     justify-content: center;
     height: 90%;
@@ -395,7 +403,7 @@ body {
     overflow: hidden;
     text-overflow: ellipsis;
     transition: all .5s;
-    cursor: pointer;
+    cursor: default;
     
 
     &:hover{
@@ -407,7 +415,37 @@ body {
         img {
             height: 80px;
             width: 80px;
+            filter: grayscale(100%);
         }
+    }
+
+    &__loader{
+        margin: -23px -20px;
+        z-index: 2;
+        position: absolute;
+        height: 100%;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: rgba($color: #000000, $alpha: .7);
+        transition: all .8s;
+        opacity: 0;
+        visibility: hidden;
+            
+        &._loading {
+            opacity: 1;
+            visibility: visible;
+        }
+    }
+
+    &__spin{
+        width: 80px;
+        height: 80px;
+        border: 10px solid rgba($color: #fff, $alpha: .3);
+        border-radius: 50%;
+        border-left-color: white;
+        animation: spin 1s linear infinite;
     }
 
     &__text{
@@ -422,6 +460,13 @@ body {
         margin-top: 10px;
     }
 
+    &__buttons{
+        display: flex;
+        flex-direction: row; 
+        justify-content: center;
+        align-items: center;
+    }
+
     &__links{
         display: flex;
         flex-direction: row; 
@@ -430,6 +475,47 @@ body {
         a{
             margin: 0 5px;
         }
+    }
+
+    &__play{
+        background-color: inherit;
+        margin-right: 10px;
+        cursor: pointer;
+        border: none;
+        outline: none;
+        width: 28px;
+        height: 28px;
+
+        &::before{
+            font-size: 32px;
+        }
+
+    }
+}
+
+.dialog{
+    position: absolute;
+    z-index: 2;
+    opacity: 0;
+    visibility: hidden;
+    bottom: 5%;
+    transition: all 1s;
+
+    &__wrapper{
+        background-color: black;
+        border-radius: 10px;
+        padding: 30px;
+    }
+
+    &__text{
+        @include light-font(18px);
+        color: #fff;
+    }
+
+    &_show{
+        opacity: 1;
+        visibility: visible;
+        bottom: 15%; 
     }
 }
 
@@ -441,7 +527,7 @@ body {
     display: flex;
     width: 100%;
     height: 10%;
-    background-color: #111;
+    background-color: rgb(5,5,5);
 
     &__wrapper{
         position: relative;
@@ -457,18 +543,30 @@ body {
         display: flex;
         justify-content: center;
         width: 13%;
+        height: 100%;
     }
 
     &__button{
         font-size: 30px;
-        height: 80px;
+        height: 100%;
         width: 50px;
         border: none;
-        background-color: #111;
+        background-color: rgb(5,5,5);
         cursor: pointer;
+        transition: all .5s;
         &:hover{
-            background-color: #222;
+            background-color: #111;
         }
+
+        &:active{
+            background-color: #111;
+            transform: scale(.95);
+        }
+
+        ._active{
+            background-color: #111;
+        }
+
     }
 
     &__cover{
@@ -484,6 +582,10 @@ body {
         width: 100px;
     }
 
+    &__settings{
+        height: 100%;
+    }
+
     &__progress-bar{
         background-color:#888;
         width: 65%;
@@ -492,16 +594,784 @@ body {
         margin: 0 20px;
         position: relative;
         cursor: pointer;
+
+        &:hover{
+            .player__current-time{
+                opacity: 1;
+            }
+        }
     }
 
     &__progress{
+        border-radius: 10px;
         background-color: #fff;
         height: 100%;
-        width: 200px;
+        width: 0;
+    }
+
+    &__current-time{
+        position: absolute;
+        @include light-font(15px);
+        transform: translateY(-110%);
+        transition: all .3s;
+        opacity: 0;
+    }
+
+    &__duration{
+        @include light-font(15px);
+        margin-right: 20px;
+    }
+
+    &__volume-wrapper{
+        position: absolute;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 10px;
+        right: 20px;
+        bottom: 110%;
+        height: 35px;
+        width: 150px;
+        background-color: rgb(10,10,10);
+        transition: all .5s;
+        transform: none;
+        opacity: 1;
+    }
+
+    &__volume-bar{
+        position: relative;
+        border-radius: 10px;
+        cursor: pointer;
+        width: 80%;
+        height: 5px;
+        background-color: #888;
+    }
+
+    &__volume-scale{
+        background-color: #fff;
+        border-radius: 10px;
+        width: 100%;
+        height: 100%
+    }
+}
+
+.news{
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: auto;
+    width: 100%;
+
+    &__wrapper{
+        position: relative;
+        display: flex;
+        flex-direction: row;
+        width: 100%;
+        height: 100%;
+        padding: 5%;
+
+        *:last-child{
+            margin-right: 0;
+        }
+    }
+
+    &__coloumn{
+        display: flex;
+        flex: 50%;
+        max-width: 50%;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        margin-right: 5%;
+    }
+
+    .note{
+        cursor: pointer;
+        position: relative;
+        width: 100%;
+        height: 600px;
+        background-color: #000;
+        margin: auto;
+        overflow: hidden;
+        margin-bottom: 8%;
+        box-shadow: 5px 5px 20px rgb(10,10,10);
+
+        &:hover{
+            img{
+                transform: scale(1.1)   
+            }
+
+            .note__more{
+                transform: translateX(0);
+            }
+        }
+
+        &__cover{
+            position: absolute;
+            width: 100%;
+            height: 380px;
+            img{
+                filter: grayscale(100%);
+                transition: all .5s;
+                object-fit: cover;
+                width: 100%;
+                height: 100%;
+            }
+        }
+
+        &__text{
+            position: absolute;
+            width: 100%;
+            padding: 5% 8%;
+            top: 380px;
+            height: 220px;
+            background-color: black;
+        }
+
+        &__date{
+            @include regular-font(18px);
+            font-style: italic;
+            height: 30px;
+            color: #888;
+            border-bottom: solid 2px #888;
+            margin-bottom: 20px;
+        }
+
+        &__title{
+            @include regular-font(24px);
+            margin-bottom: 30px;
+        }
+
+        &__more-wrapper{
+            width: 100px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        &__more{
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            width: 200px;
+            transition: all cubic-bezier(.77,.31,.15,.62) .5s;
+            transform: translateX(-70%);
+            span{
+                content: "";
+                position: relative;
+                margin-left: 10px; 
+                height: .5px;
+                width: 100px;
+                background-color: #fff;
+            }
+        }
+
+        &__button{
+            background: none;
+            border: none;
+            @include regular-font(18px);
+        }
+    }
+}
+
+.modal{
+    position: fixed;
+    display: flex;
+    opacity: 0;
+    visibility: hidden;
+    align-items: center;
+    justify-content: center;
+    z-index: 5;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba($color: #000000, $alpha: .8);
+    transform: translateY(-100px);
+    transition: all .2s;
+
+    &__wrapper{
+        box-sizing: content-box;
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 2% 5%;
+        width: 80%;
+        height: 80%;
+        background-color: #111;
+        overflow-y: scroll;
+    }
+
+    &__button{
+        right: 0;
+        width: 5%;
+        position: absolute;
+        display: flex;
+        z-index: 3;
+        align-items: center;
+        justify-content: center;
+    }
+
+    &__close{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 5px;
+        float: right;
+        font-family: sans-serif;
+        font-size: 64px;
+        font-weight: 700;
+        line-height: 1;
+        color: #fff;
+        text-shadow: 0 1px 0 #000;
+        background-color: rgba($color: #000, $alpha: .2);
+        height: 42px;
+        width: 42px;
+        border-radius: 50%;
+        opacity: .5;
+        text-decoration: none;
+        transition: all .3s;
+
+        &:hover{
+            background-color: rgba($color: #fff, $alpha: .3);
+            opacity: .7;
+        }
+    }
+
+    &__content{
+        display: flex;
+        flex-direction: column;
+        position: relative;
+        width: 100%;
+        height: 100%
+    }
+
+    &__cover{
+        position: relative;
+        width: 100%;
+        height: 80%;
+        margin-bottom: 10px;
+        img{
+            filter: grayscale(100%);
+            transition: all .5s;
+            object-fit: cover;
+            width: 100%;
+            height: 90%;
+        }
+    }
+
+    &__date{
+        @include regular-font(18px);
+        font-style: italic;
+        height: 30px;
+        color: #888;
+        border-bottom: solid 2px #888;
+        margin-bottom: 20px;
+    }
+
+    &__title{
+        display: flex;
+        align-items: center;
+        @include regular-font(42px);
+        margin-bottom: 30px;
+        height: 10%;
+    }
+
+    &__description{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        @include regular-font(64px);
+        margin-top: 500px;
+        padding-bottom: 25%;
     }
 }
 
 ._hide{
     opacity: 0;
     transform: translateX(500px);
-}   
+}  
+
+._show{
+    visibility: visible;
+    transform: translateY(0);
+    opacity: 1;
+}
+
+._play{
+    filter: grayscale(0%) !important;
+}
+
+//=========================================================================================
+
+@media (max-width: 1560px) {
+    .about{
+        &__image{
+            width: 200px;
+            height: 200px;
+        }
+
+        &__title{
+            @include extra-font(32px);
+            margin-bottom: 15px;
+        }
+    
+        &__text{
+            @include light-font(16px);
+        }
+    }
+}
+
+@media (max-width: 1350px) {
+    .home{
+        &__information{
+            flex-direction: column;
+        }
+
+        &__text{
+            width: 100%;
+            margin-bottom: 40px;
+        }
+
+        &__links{
+            flex-direction: row;
+            width: 100%;
+        }
+    }
+
+    .about{
+        &__wrapper{
+            flex-direction: column;
+            height: 100%;
+        }
+
+        &__image{
+            width: 300px;
+            height: 300px;
+            margin-bottom: 50px;
+        }
+
+        &__title{
+            @include extra-font(40px);
+            margin-bottom: 18px;
+        }
+    
+        &__text{
+            @include light-font(20px);
+            flex-direction: row;
+            margin-left: 0;
+            height:auto;
+        }
+
+        &__text-wrapper{
+            display: flex;
+            flex-direction: column;
+            margin-right: 30px;
+        }
+
+        &__links{
+            flex-direction: column;
+            justify-content: center;
+
+            a{
+                margin: 0px 0px 30px 0px;
+                font-size: 32px;
+            }
+        }
+    }
+
+    .news{
+
+        &__wrapper{
+            padding: 3% 1%;
+        }
+    }
+}
+
+@media (max-width: $md1+px) {
+    .wrapper{
+        overflow-y: auto;
+        height: 100%;
+    }
+    .menu{
+        position: fixed;
+        display: flex;
+        align-items: center;
+        min-height: 100px;
+        width: 100%;
+
+        &__wrapper{
+            position: relative;
+            height: 100%;
+            width: 100%;
+            align-items: center;
+            justify-content: flex-start;
+            flex-direction: row;
+        }
+
+        &__title{
+            margin-bottom: 0;
+        }
+
+        &__refs{
+            position: absolute;
+            right: 0;
+        }
+
+        &__item{
+            margin-bottom: 0;
+            margin-left: 20px;
+            display: inline-block;
+
+            &_active{
+                a{
+                    letter-spacing: 1px;
+                }
+            }
+        }
+    }    
+
+    .content{
+        padding-top: 100px;
+        padding-left: 0;
+        min-height: 100%;
+        height: 100%;
+    }
+
+    .home{
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        &__wrapper{
+            height: 100%;
+            padding: 0px;
+        }
+    }
+
+    .about{
+        position: relative;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        &__slider{
+            width: 100%;
+            height: 100%;
+        }
+
+        &__slide{
+            position: relative;
+            height: 100%;
+        }
+    }
+
+    .player{
+        padding-left: 0;
+    }
+
+    .news{
+
+        &__wrapper{
+            padding: 5%;
+        }
+    }
+
+    .modal{
+        
+        &__wrapper{
+            width: 100%;
+            height: 100%;
+            padding: 0;
+        }
+
+        &__button{
+            width: 64px;
+            height: 64px;
+            top: 10px;
+            right: 10px;
+        }
+
+        &__close{
+            font-size: 72px;
+            height: 60px;
+            width: 60px;
+        }
+    }
+}
+
+@media(max-width: $md2+px){
+
+    .menu{
+
+        &__wrapper{
+            max-width: 90%;
+        }
+
+        &__title{
+            @include extra-font(14px);
+        }
+    
+        &__item{
+            @include light-font(18px);
+        }     
+    } 
+
+    .home{
+
+        &__wrapper{
+            width: 100%;
+            justify-content: flex-start;
+        }
+
+        &__information{
+            width: 90%;
+        }
+
+        &__title{
+            margin-bottom: 20px;
+            @include extra-font(34px);
+        }
+    
+        &__description{
+            @include light-font(24px);
+        }
+    }
+
+    .episode{
+        max-height: 160px;
+        
+    
+        &:hover{
+            max-height: 100%;
+            background-color: #222;
+        }
+    
+        &__cover{
+            img {
+                height: 120px;
+                width: 120px;
+                filter: grayscale(100%);
+            }
+        }
+    
+        &__text{
+            width: 85%;
+            @include light-font(22px);
+            margin-left: 25px;
+        }
+
+        &__buttons{
+            width: 15%;
+        }
+    
+        &__description{
+            width: 95%;
+            margin-top: 10px;
+        }
+    
+        &__play{
+            width: 48px;
+            height: 48px;
+    
+            &::before{
+                font-size: 40px;
+            }
+    
+        }
+    }
+
+    .player{
+        padding-left: 0;
+        height: 14%;
+
+        &__controls{
+            width: 25%;
+        }
+
+        &__button{
+            font-size: 46px;
+        }
+
+        &__cover{
+            width: 80px;
+            height: 80px
+        }
+
+        &__text{
+            font-size: 26px;
+            width: 150px;
+        }
+
+        &__progress-bar{
+            width: 50%;
+            margin:  0 10px;
+        }
+
+        &__volume{
+            font-size: 32px;
+        }
+
+        &__duration{
+            font-size: 22px;
+        }
+
+        &__current-time{
+            font-size: 22px;
+        }
+
+        &__volume-wrapper{
+            width: 200px;
+            height: 50px;
+        }
+    }
+}
+
+@media(max-width: $md3+px){
+    .menu{
+        &__wrapper{
+            max-width: 95%;
+        }
+
+        &__title{
+            width: 100px;
+            @include extra-font(14px);
+        }
+    
+        &__item{
+            @include light-font(16px);
+        }     
+    } 
+
+    .home{
+        height: auto;
+        &__image{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: url(/img/team.png) fixed center no-repeat;
+            background-size: auto 100%;
+            height: 75vh;
+            filter: grayscale(100%);
+            img{
+                display: none;
+            }
+        }
+    }
+
+    .about{
+        &__image{
+            width: 250px;
+            height: 250px;
+        }
+        &__text{
+            max-width: 300px
+        }
+    }
+
+    .player{
+        &__text{
+            font-size: 20px;
+        }
+        &__cover{
+            display: none;
+        }
+        &__controls{
+            width: 20%;
+        }
+        &__button{
+            font-size: 32px;
+        }
+    }
+
+    .news{
+        &__wrapper{
+            flex-direction: column;
+        }
+
+        &__coloumn{
+            margin-right: 0;
+            flex: 100%;
+            max-width: 100%;
+        }
+    }
+}
+
+@media(max-width: $md4+px){
+    .menu{
+        &__title{
+            width: 50px;
+            &-short{
+                display: block;
+            }
+            &-long{
+                display: none;
+            }
+        }   
+    } 
+
+    .episode{
+        &__cover{
+            img{
+                height: 80px;
+                width: 80px;
+            }
+        }
+
+        &__text{
+            @include light-font(18px);
+        }
+    }
+    
+    .player{
+        height: 10%;
+        &__controls{
+            width: 30%;
+        }
+        &__text{
+            display: none;
+        }
+        &__duration{
+            font-size: 20px;
+        }
+
+        &__volume{
+            font-size: 22px;
+        }
+    }
+}
+
+@media(max-width: $md5+px){
+    .menu{
+        &__item{
+            @include light-font(14px);
+        }     
+    } 
+
+    .about{
+        &__image{
+            height: 180px;
+            width: 180px;
+        }
+
+        &__text{
+            max-width: 200px;
+        }
+
+        &__title{
+            @include extra-font(26px);
+        }
+    
+        &__text{
+            @include light-font(16px);
+        }
+
+        &__links{
+            a{
+                font-size: 24px;
+            }
+        }
+    }
+}

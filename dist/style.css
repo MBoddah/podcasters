@@ -106,9 +106,10 @@ body {
   width: 100%;
   min-width: 400px;
   min-height: 100vh;
+  height: 100vh;
   margin: auto;
   font-size: 14px;
-  background-color: #0a0a0a; }
+  background-color: #141414; }
   body._lock {
     overflow: hidden; }
 
@@ -153,6 +154,8 @@ body {
     font-weight: 700;
     color: #fff;
     margin-bottom: 50px; }
+    .menu__title-short {
+      display: none; }
   .menu__item {
     font-family: "Jura", sans-serif;
     font-size: 20px;
@@ -170,7 +173,7 @@ body {
       letter-spacing: 3px; }
 
 .content {
-  background-color: #0a0a0a;
+  background-color: #141414;
   position: relative;
   min-height: 100vh;
   padding-left: 400px;
@@ -187,11 +190,11 @@ body {
   .about *:last-child {
     margin-bottom: 0; }
   .about__next {
-    right: 30px;
+    right: 5%;
     z-index: 2; }
   .about__prev {
     z-index: 2;
-    left: 30px; }
+    left: 5%; }
   .about__slider {
     position: absolute;
     left: 0;
@@ -247,7 +250,7 @@ body {
     flex-direction: column;
     justify-content: center;
     height: 250px;
-    width: 600px;
+    max-width: 450px;
     margin-left: 50px; }
   .about__title {
     font-family: "Jura", sans-serif;
@@ -266,7 +269,7 @@ body {
 
 .links a {
   font-size: 26px;
-  color: #ccc;
+  color: #bbb;
   text-decoration: none;
   margin: 30px 20px 0px 0px;
   transition: all .5s; }
@@ -277,7 +280,8 @@ body {
 .arrow {
   position: absolute;
   transition: all .3s;
-  opacity: .4; }
+  opacity: .4;
+  cursor: pointer; }
   .arrow:active {
     opacity: 1;
     transform: scale(0.96); }
@@ -292,7 +296,7 @@ body {
   justify-content: center;
   width: 100%; }
   .home *:last-child {
-    margin-bottom: 0; }
+    margin-bottom: 2%; }
   .home__wrapper {
     position: relative;
     padding: 100px 0;
@@ -302,7 +306,6 @@ body {
     justify-content: center;
     width: 80%; }
   .home__image {
-    height: 100%;
     width: 100%; }
     .home__image img {
       width: 100%;
@@ -333,12 +336,13 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: flex-end; }
+    .home__links *:last-child {
+      margin-bottom: 0; }
     .home__links a {
       font-size: 40px; }
 
 .podcasts {
   display: flex;
-  position: fixed;
   overflow-y: scroll;
   justify-content: center;
   height: 90%; }
@@ -358,13 +362,37 @@ body {
   overflow: hidden;
   text-overflow: ellipsis;
   transition: all .5s;
-  cursor: pointer; }
+  cursor: default; }
   .episode:hover {
     max-height: 300px;
     background-color: #222; }
   .episode__cover img {
     height: 80px;
-    width: 80px; }
+    width: 80px;
+    filter: grayscale(100%); }
+  .episode__loader {
+    margin: -23px -20px;
+    z-index: 2;
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.7);
+    transition: all .8s;
+    opacity: 0;
+    visibility: hidden; }
+    .episode__loader._loading {
+      opacity: 1;
+      visibility: visible; }
+  .episode__spin {
+    width: 80px;
+    height: 80px;
+    border: 10px solid rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    border-left-color: white;
+    animation: spin 1s linear infinite; }
   .episode__text {
     width: 85%;
     overflow: hidden;
@@ -376,6 +404,11 @@ body {
   .episode__description {
     width: 95%;
     margin-top: 10px; }
+  .episode__buttons {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center; }
   .episode__links {
     display: flex;
     flex-direction: row;
@@ -383,6 +416,38 @@ body {
     align-items: center; }
     .episode__links a {
       margin: 0 5px; }
+  .episode__play {
+    background-color: inherit;
+    margin-right: 10px;
+    cursor: pointer;
+    border: none;
+    outline: none;
+    width: 28px;
+    height: 28px; }
+    .episode__play::before {
+      font-size: 32px; }
+
+.dialog {
+  position: absolute;
+  z-index: 2;
+  opacity: 0;
+  visibility: hidden;
+  bottom: 5%;
+  transition: all 1s; }
+  .dialog__wrapper {
+    background-color: black;
+    border-radius: 10px;
+    padding: 30px; }
+  .dialog__text {
+    font-family: "Jura", sans-serif;
+    font-size: 18px;
+    font-weight: 300;
+    color: #bbb;
+    color: #fff; }
+  .dialog_show {
+    opacity: 1;
+    visibility: visible;
+    bottom: 15%; }
 
 .player {
   position: fixed;
@@ -392,7 +457,7 @@ body {
   display: flex;
   width: 100%;
   height: 10%;
-  background-color: #111; }
+  background-color: #050505; }
   .player__wrapper {
     position: relative;
     display: flex;
@@ -404,16 +469,23 @@ body {
   .player__controls {
     display: flex;
     justify-content: center;
-    width: 13%; }
+    width: 13%;
+    height: 100%; }
   .player__button {
     font-size: 30px;
-    height: 80px;
+    height: 100%;
     width: 50px;
     border: none;
-    background-color: #111;
-    cursor: pointer; }
+    background-color: #050505;
+    cursor: pointer;
+    transition: all .5s; }
     .player__button:hover {
-      background-color: #222; }
+      background-color: #111; }
+    .player__button:active {
+      background-color: #111;
+      transform: scale(0.95); }
+    .player__button ._active {
+      background-color: #111; }
   .player__cover {
     width: 50px;
     height: 50px;
@@ -426,6 +498,8 @@ body {
     color: #bbb;
     margin-left: 20px;
     width: 100px; }
+  .player__settings {
+    height: 100%; }
   .player__progress-bar {
     background-color: #888;
     width: 65%;
@@ -434,12 +508,571 @@ body {
     margin: 0 20px;
     position: relative;
     cursor: pointer; }
+    .player__progress-bar:hover .player__current-time {
+      opacity: 1; }
   .player__progress {
+    border-radius: 10px;
     background-color: #fff;
     height: 100%;
-    width: 200px; }
+    width: 0; }
+  .player__current-time {
+    position: absolute;
+    font-family: "Jura", sans-serif;
+    font-size: 15px;
+    font-weight: 300;
+    color: #bbb;
+    transform: translateY(-110%);
+    transition: all .3s;
+    opacity: 0; }
+  .player__duration {
+    font-family: "Jura", sans-serif;
+    font-size: 15px;
+    font-weight: 300;
+    color: #bbb;
+    margin-right: 20px; }
+  .player__volume-wrapper {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+    right: 20px;
+    bottom: 110%;
+    height: 35px;
+    width: 150px;
+    background-color: #0a0a0a;
+    transition: all .5s;
+    transform: none;
+    opacity: 1; }
+  .player__volume-bar {
+    position: relative;
+    border-radius: 10px;
+    cursor: pointer;
+    width: 80%;
+    height: 5px;
+    background-color: #888; }
+  .player__volume-scale {
+    background-color: #fff;
+    border-radius: 10px;
+    width: 100%;
+    height: 100%; }
+
+.news {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: auto;
+  width: 100%; }
+  .news__wrapper {
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    height: 100%;
+    padding: 5%; }
+    .news__wrapper *:last-child {
+      margin-right: 0; }
+  .news__coloumn {
+    display: flex;
+    flex: 50%;
+    max-width: 50%;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-right: 5%; }
+  .news .note {
+    cursor: pointer;
+    position: relative;
+    width: 100%;
+    height: 600px;
+    background-color: #000;
+    margin: auto;
+    overflow: hidden;
+    margin-bottom: 8%;
+    box-shadow: 5px 5px 20px #0a0a0a; }
+    .news .note:hover img {
+      transform: scale(1.1); }
+    .news .note:hover .note__more {
+      transform: translateX(0); }
+    .news .note__cover {
+      position: absolute;
+      width: 100%;
+      height: 380px; }
+      .news .note__cover img {
+        filter: grayscale(100%);
+        transition: all .5s;
+        object-fit: cover;
+        width: 100%;
+        height: 100%; }
+    .news .note__text {
+      position: absolute;
+      width: 100%;
+      padding: 5% 8%;
+      top: 380px;
+      height: 220px;
+      background-color: black; }
+    .news .note__date {
+      font-family: "Jura", sans-serif;
+      font-size: 18px;
+      font-weight: 500;
+      color: #fff;
+      font-style: italic;
+      height: 30px;
+      color: #888;
+      border-bottom: solid 2px #888;
+      margin-bottom: 20px; }
+    .news .note__title {
+      font-family: "Jura", sans-serif;
+      font-size: 24px;
+      font-weight: 500;
+      color: #fff;
+      margin-bottom: 30px; }
+    .news .note__more-wrapper {
+      width: 100px;
+      overflow: hidden;
+      position: relative; }
+    .news .note__more {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      width: 200px;
+      transition: all cubic-bezier(0.77, 0.31, 0.15, 0.62) 0.5s;
+      transform: translateX(-70%); }
+      .news .note__more span {
+        content: "";
+        position: relative;
+        margin-left: 10px;
+        height: .5px;
+        width: 100px;
+        background-color: #fff; }
+    .news .note__button {
+      background: none;
+      border: none;
+      font-family: "Jura", sans-serif;
+      font-size: 18px;
+      font-weight: 500;
+      color: #fff; }
+
+.modal {
+  position: fixed;
+  display: flex;
+  opacity: 0;
+  visibility: hidden;
+  align-items: center;
+  justify-content: center;
+  z-index: 5;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.8);
+  transform: translateY(-100px);
+  transition: all .2s; }
+  .modal__wrapper {
+    box-sizing: content-box;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2% 5%;
+    width: 80%;
+    height: 80%;
+    background-color: #111;
+    overflow-y: scroll; }
+  .modal__button {
+    right: 0;
+    width: 5%;
+    position: absolute;
+    display: flex;
+    z-index: 3;
+    align-items: center;
+    justify-content: center; }
+  .modal__close {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 5px;
+    float: right;
+    font-family: sans-serif;
+    font-size: 64px;
+    font-weight: 700;
+    line-height: 1;
+    color: #fff;
+    text-shadow: 0 1px 0 #000;
+    background-color: rgba(0, 0, 0, 0.2);
+    height: 42px;
+    width: 42px;
+    border-radius: 50%;
+    opacity: .5;
+    text-decoration: none;
+    transition: all .3s; }
+    .modal__close:hover {
+      background-color: rgba(255, 255, 255, 0.3);
+      opacity: .7; }
+  .modal__content {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    width: 100%;
+    height: 100%; }
+  .modal__cover {
+    position: relative;
+    width: 100%;
+    height: 80%;
+    margin-bottom: 10px; }
+    .modal__cover img {
+      filter: grayscale(100%);
+      transition: all .5s;
+      object-fit: cover;
+      width: 100%;
+      height: 90%; }
+  .modal__date {
+    font-family: "Jura", sans-serif;
+    font-size: 18px;
+    font-weight: 500;
+    color: #fff;
+    font-style: italic;
+    height: 30px;
+    color: #888;
+    border-bottom: solid 2px #888;
+    margin-bottom: 20px; }
+  .modal__title {
+    display: flex;
+    align-items: center;
+    font-family: "Jura", sans-serif;
+    font-size: 42px;
+    font-weight: 500;
+    color: #fff;
+    margin-bottom: 30px;
+    height: 10%; }
+  .modal__description {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: "Jura", sans-serif;
+    font-size: 64px;
+    font-weight: 500;
+    color: #fff;
+    margin-top: 500px;
+    padding-bottom: 25%; }
 
 ._hide {
   opacity: 0;
   transform: translateX(500px); }
+
+._show {
+  visibility: visible;
+  transform: translateY(0);
+  opacity: 1; }
+
+._play {
+  filter: grayscale(0%) !important; }
+
+@media (max-width: 1560px) {
+  .about__image {
+    width: 200px;
+    height: 200px; }
+  .about__title {
+    font-family: "Jura", sans-serif;
+    font-size: 32px;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 15px; }
+  .about__text {
+    font-family: "Jura", sans-serif;
+    font-size: 16px;
+    font-weight: 300;
+    color: #bbb; } }
+
+@media (max-width: 1350px) {
+  .home__information {
+    flex-direction: column; }
+  .home__text {
+    width: 100%;
+    margin-bottom: 40px; }
+  .home__links {
+    flex-direction: row;
+    width: 100%; }
+  .about__wrapper {
+    flex-direction: column;
+    height: 100%; }
+  .about__image {
+    width: 300px;
+    height: 300px;
+    margin-bottom: 50px; }
+  .about__title {
+    font-family: "Jura", sans-serif;
+    font-size: 40px;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 18px; }
+  .about__text {
+    font-family: "Jura", sans-serif;
+    font-size: 20px;
+    font-weight: 300;
+    color: #bbb;
+    flex-direction: row;
+    margin-left: 0;
+    height: auto; }
+  .about__text-wrapper {
+    display: flex;
+    flex-direction: column;
+    margin-right: 30px; }
+  .about__links {
+    flex-direction: column;
+    justify-content: center; }
+    .about__links a {
+      margin: 0px 0px 30px 0px;
+      font-size: 32px; }
+  .news__wrapper {
+    padding: 3% 1%; } }
+
+@media (max-width: 1182px) {
+  .wrapper {
+    overflow-y: auto;
+    height: 100%; }
+  .menu {
+    position: fixed;
+    display: flex;
+    align-items: center;
+    min-height: 100px;
+    width: 100%; }
+    .menu__wrapper {
+      position: relative;
+      height: 100%;
+      width: 100%;
+      align-items: center;
+      justify-content: flex-start;
+      flex-direction: row; }
+    .menu__title {
+      margin-bottom: 0; }
+    .menu__refs {
+      position: absolute;
+      right: 0; }
+    .menu__item {
+      margin-bottom: 0;
+      margin-left: 20px;
+      display: inline-block; }
+      .menu__item_active a {
+        letter-spacing: 1px; }
+  .content {
+    padding-top: 100px;
+    padding-left: 0;
+    min-height: 100%;
+    height: 100%; }
+  .home {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center; }
+    .home__wrapper {
+      height: 100%;
+      padding: 0px; }
+  .about {
+    position: relative;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center; }
+    .about__slider {
+      width: 100%;
+      height: 100%; }
+    .about__slide {
+      position: relative;
+      height: 100%; }
+  .player {
+    padding-left: 0; }
+  .news__wrapper {
+    padding: 5%; }
+  .modal__wrapper {
+    width: 100%;
+    height: 100%;
+    padding: 0; }
+  .modal__button {
+    width: 64px;
+    height: 64px;
+    top: 10px;
+    right: 10px; }
+  .modal__close {
+    font-size: 72px;
+    height: 60px;
+    width: 60px; } }
+
+@media (max-width: 991.98px) {
+  .menu__wrapper {
+    max-width: 90%; }
+  .menu__title {
+    font-family: "Jura", sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    color: #fff; }
+  .menu__item {
+    font-family: "Jura", sans-serif;
+    font-size: 18px;
+    font-weight: 300;
+    color: #bbb; }
+  .home__wrapper {
+    width: 100%;
+    justify-content: flex-start; }
+  .home__information {
+    width: 90%; }
+  .home__title {
+    margin-bottom: 20px;
+    font-family: "Jura", sans-serif;
+    font-size: 34px;
+    font-weight: 700;
+    color: #fff; }
+  .home__description {
+    font-family: "Jura", sans-serif;
+    font-size: 24px;
+    font-weight: 300;
+    color: #bbb; }
+  .episode {
+    max-height: 160px; }
+    .episode:hover {
+      max-height: 100%;
+      background-color: #222; }
+    .episode__cover img {
+      height: 120px;
+      width: 120px;
+      filter: grayscale(100%); }
+    .episode__text {
+      width: 85%;
+      font-family: "Jura", sans-serif;
+      font-size: 22px;
+      font-weight: 300;
+      color: #bbb;
+      margin-left: 25px; }
+    .episode__buttons {
+      width: 15%; }
+    .episode__description {
+      width: 95%;
+      margin-top: 10px; }
+    .episode__play {
+      width: 48px;
+      height: 48px; }
+      .episode__play::before {
+        font-size: 40px; }
+  .player {
+    padding-left: 0;
+    height: 14%; }
+    .player__controls {
+      width: 25%; }
+    .player__button {
+      font-size: 46px; }
+    .player__cover {
+      width: 80px;
+      height: 80px; }
+    .player__text {
+      font-size: 26px;
+      width: 150px; }
+    .player__progress-bar {
+      width: 50%;
+      margin: 0 10px; }
+    .player__volume {
+      font-size: 32px; }
+    .player__duration {
+      font-size: 22px; }
+    .player__current-time {
+      font-size: 22px; }
+    .player__volume-wrapper {
+      width: 200px;
+      height: 50px; } }
+
+@media (max-width: 767.98px) {
+  .menu__wrapper {
+    max-width: 95%; }
+  .menu__title {
+    width: 100px;
+    font-family: "Jura", sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    color: #fff; }
+  .menu__item {
+    font-family: "Jura", sans-serif;
+    font-size: 16px;
+    font-weight: 300;
+    color: #bbb; }
+  .home {
+    height: auto; }
+    .home__image {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: url(img/team.png) fixed center no-repeat;
+      background-size: auto 100%;
+      height: 75vh;
+      filter: grayscale(100%); }
+      .home__image img {
+        display: none; }
+  .about__image {
+    width: 250px;
+    height: 250px; }
+  .about__text {
+    max-width: 300px; }
+  .player__text {
+    font-size: 20px; }
+  .player__cover {
+    display: none; }
+  .player__controls {
+    width: 20%; }
+  .player__button {
+    font-size: 32px; }
+  .news__wrapper {
+    flex-direction: column; }
+  .news__coloumn {
+    margin-right: 0;
+    flex: 100%;
+    max-width: 100%; } }
+
+@media (max-width: 559.98px) {
+  .menu__title {
+    width: 50px; }
+    .menu__title-short {
+      display: block; }
+    .menu__title-long {
+      display: none; }
+  .episode__cover img {
+    height: 80px;
+    width: 80px; }
+  .episode__text {
+    font-family: "Jura", sans-serif;
+    font-size: 18px;
+    font-weight: 300;
+    color: #bbb; }
+  .player {
+    height: 10%; }
+    .player__controls {
+      width: 30%; }
+    .player__text {
+      display: none; }
+    .player__duration {
+      font-size: 20px; }
+    .player__volume {
+      font-size: 22px; } }
+
+@media (max-width: 429.98px) {
+  .menu__item {
+    font-family: "Jura", sans-serif;
+    font-size: 14px;
+    font-weight: 300;
+    color: #bbb; }
+  .about__image {
+    height: 180px;
+    width: 180px; }
+  .about__text {
+    max-width: 200px; }
+  .about__title {
+    font-family: "Jura", sans-serif;
+    font-size: 26px;
+    font-weight: 700;
+    color: #fff; }
+  .about__text {
+    font-family: "Jura", sans-serif;
+    font-size: 16px;
+    font-weight: 300;
+    color: #bbb; }
+  .about__links a {
+    font-size: 24px; } }
 

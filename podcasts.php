@@ -1,12 +1,15 @@
-<?php include('header.php') ?>
-        <?php $page = 'podcasts'; include('menu.php') ?>
+<?php $page = 'podcasts'; include('header.php'); include('menu.php'); ?>
         <div class="content _hide">
             <section class="podcasts">
                 <div class="podcasts__episodes">
                     
                     <div class="podcasts__episode episode">
+                        <div class="episode__loader">
+                            <div class="episode__spin"></div>
+                        </div>
+                        <audio class="episode__audio" src="https://docs.google.com/uc?export=download&id=1ZO_uCF6B92f0cc_qRAuZ5kZez9pQLiMe" preload="none" audio-episode="5"></audio>
                         <div class="episode__cover">
-                            <img src="/img/covers/cover_1.jpg" alt="">
+                            <img src="./img/covers/cover_5.jpg" alt="">
                         </div>
                         <div class="episode__text">
                             <div class="episode__title">
@@ -23,15 +26,22 @@
                                 </p>
                             </div>
                         </div>
-                        <div class="episode__links links">
-                            <a href="" class="episode__link _icon-vk"></a>
-                            <a href="" class="episode__link _icon-spotify"></a>
-                            <a href="" class="episode__link _icon-sloud"></a>
+                        <div class="episode__buttons">
+                            <button href="" class="episode__play _icon-play" play-episode="5"></button>
+                            <!-- <div class="episode__links links">
+                                <a href="" class="episode__link _icon-vk"></a>
+                                <a href="" class="episode__link _icon-spotify"></a>
+                                <a href="" class="episode__link _icon-sloud"></a>
+                            </div> -->
                         </div>
                     </div>
                     <div class="podcasts__episode episode">
+                        <div class="episode__loader">
+                            <div class="episode__spin"></div>
+                        </div>
+                        <audio class="episode__audio" src="https://docs.google.com/uc?export=download&id=14MvMbmj5ZS_jXmXUGJyKhqGvzZmhNoGb" preload="none" audio-episode="4"></audio>
                         <div class="episode__cover">
-                            <img src="/img/covers/cover_2.jpg" alt="">
+                            <img src="./img/covers/cover_4.jpg" alt="">
                         </div>
                         <div class="episode__text">
                             <div class="episode__title">
@@ -45,15 +55,22 @@
                                     <br>В IV выпуске мы решили обсудить татуировки с точки зрения вкусовых предпочтений, вспомнили о важности чистки зубов и обратились к вопросам финансовой грамотности.</p>
                             </div>
                         </div>
-                        <div class="episode__links links">
-                            <a href="" class="episode__link _icon-vk"></a>
-                            <a href="" class="episode__link _icon-spotify"></a>
-                            <a href="" class="episode__link _icon-sloud"></a>
+                        <div class="episode__buttons">
+                            <button href="" class="episode__play _icon-play" play-episode="4"></button>
+                            <!-- <div class="episode__links links">
+                                <a href="" class="episode__link _icon-vk"></a>
+                                <a href="" class="episode__link _icon-spotify"></a>
+                                <a href="" class="episode__link _icon-sloud"></a>
+                            </div> -->
                         </div>
                     </div>
                     <div class="podcasts__episode episode">
+                        <div class="episode__loader">
+                            <div class="episode__spin"></div>
+                        </div>
+                        <audio class="episode__audio" src="https://docs.google.com/uc?export=download&id=12fBVmwrxsgkRs2Vj27Vpa_UOSeX5w22s" type="audio/mp3" audio-episode="3" preload="none"></audio>
                         <div class="episode__cover">
-                            <img src="/img/covers/cover_3.jpg" alt="">
+                            <img src="./img/covers/cover_3.jpg" alt="">
                         </div>
                         <div class="episode__text">
                             <div class="episode__title">
@@ -63,15 +80,22 @@
                                 <p>В этом выпуске мы изо всех сил постараемся не прослыть расистами, разберёмся, какому когнитивному искажению подарила своё имя IKEA и как с этим связана программа "Играй, гармонь!", разделим ностальгию Лёхи по детству в деревне и услышим самую необычную аннотацию к "Острым козырькам", прочитав которую, Киллиан Мёрфи отказался от ролей у Нолана из-за сценарной скупости.</p>
                             </div>
                         </div>
-                        <div class="episode__links links">
-                            <a href="" class="episode__link _icon-vk"></a>
-                            <a href="" class="episode__link _icon-spotify"></a>
-                            <a href="" class="episode__link _icon-sloud"></a>
+                        <div class="episode__buttons">
+                            <button href="" class="episode__play _icon-play"></button>
+                            <!-- <div class="episode__links links">
+                                <a href="" class="episode__link _icon-vk"></a>
+                                <a href="" class="episode__link _icon-spotify"></a>
+                                <a href="" class="episode__link _icon-sloud"></a>
+                            </div> -->
                         </div>
                     </div>
                     <div class="podcasts__episode episode">
+                        <div class="episode__loader">
+                            <div class="episode__spin"></div>
+                        </div>
+                        <audio class="episode__audio" src="https://docs.google.com/uc?export=download&id=16PwGk4Tt2rx0SUwhDM3pMFq-DEyau2Hl" preload="none" audio-episode="2"></audio>
                         <div class="episode__cover">
-                            <img src="/img/covers/cover_4.jpg" alt="">
+                            <img src="./img/covers/cover_2.jpg" alt="">
                         </div>
                         <div class="episode__text">
                             <div class="episode__title">
@@ -83,15 +107,22 @@
                                     <br>Ставь лайк, если одна буханка хлеба стоит 60 рублей по Лехиному курсу.</p>
                             </div>
                         </div>
-                        <div class="episode__links links">
-                            <a href="" class="episode__link _icon-vk"></a>
-                            <a href="" class="episode__link _icon-spotify"></a>
-                            <a href="" class="episode__link _icon-sloud"></a>
+                        <div class="episode__buttons">
+                            <button href="" class="episode__play _icon-play"></button>
+                            <!-- <div class="episode__links links">
+                                <a href="" class="episode__link _icon-vk"></a>
+                                <a href="" class="episode__link _icon-spotify"></a>
+                                <a href="" class="episode__link _icon-sloud"></a>
+                            </div> -->
                         </div>
                     </div>
                     <div class="podcasts__episode episode">
+                        <div class="episode__loader">
+                            <div class="episode__spin"></div>
+                        </div>
+                        <audio class="episode__audio" src="https://docs.google.com/uc?export=download&id=1Zggw-AQ1ZsmE7VUpRhXVB0PoKzwuzJ5h" preload="none" audio-episode="1"></audio>
                         <div class="episode__cover">
-                            <img src="/img/covers/cover_5.jpg" alt="">
+                            <img src="./img/covers/cover_1.jpg" alt="">
                         </div>
                         <div class="episode__text">
                             <div class="episode__title">
@@ -105,31 +136,45 @@
                                 </p>
                             </div>
                         </div>
-                        <div class="episode__links links">
-                            <a href="" class="episode__link _icon-vk"></a>
-                            <a href="" class="episode__link _icon-spotify"></a>
-                            <a href="" class="episode__link _icon-sloud"></a>
+                        <div class="episode__buttons">
+                            <button href="" class="episode__play _icon-play"></button>
+                            <!-- <div class="episode__links links">
+                                <a href="" class="episode__link _icon-vk"></a>
+                                <a href="" class="episode__link _icon-spotify"></a>
+                                <a href="" class="episode__link _icon-sloud"></a>
+                            </div> -->
                         </div>
                     </div>
                 </div> 
-                <div class="podcasts_player player">
+                <div class="podcasts__dialog dialog">
+                    <div class="dialog__wrapper">
+                        <p class="dialog__text">Прости, у нас какие-то проблемы... Пожалуйста, попробуй позже, или послушай нас на стримингах</p>
+                    </div>
+                </div>
+                <div class="podcasts__player player">
                     <div class="player__wrapper">
                         <div class="player__controls">
                             <button class="player__button _icon-backward"></button>
-                            <button class="player__button _icon-play"></button>
+                            <button class="player__button player__play _icon-play"></button>
                             <button class="player__button _icon-forward"></button>
                         </div>
-                        <div class="player__cover"></div>
+                        <img class="player__cover" src="./img/covers/cover_1.jpg"></img>
                         <div class="player__text">
                             <div class="player__title">Выпуск 1</div>
                         </div>
-                        <audio src="" class="player__audio"></audio>
                         <div class="player__progress-bar">
+                            <div class="player__current-time">00:00</div>
                             <div class="player__progress"></div>
-                        </div>
+                        </div iv>
+                        <div class="player__duration">00:00</div>
                         <div class="player__settings">
                             <!-- <button class="player__button _icon-like"></button> -->
-                            <button class="player__button _icon-volume-low"></button>
+                            <button class="player__button player__volume _icon-volume-high"></button>
+                        </div>
+                        <div class="player__volume-wrapper _hide">
+                            <div class="player__volume-bar">
+                                <div class="player__volume-scale"></div>
+                            </div>
                         </div>
                     </div>
                 </div>
