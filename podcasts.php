@@ -1,4 +1,7 @@
-<?php $page = 'podcasts'; include('header.php'); include('menu.php'); ?>
+<?php $page = 'podcasts'; include('header.php');?>
+<body>
+    <div class="wrapper">
+        <?php include('menu.php'); ?>
         <div class="content _hide">
             <section class="podcasts">
                 <div class="podcasts__episodes">

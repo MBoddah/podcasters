@@ -1,4 +1,7 @@
-<?php $page = 'news'; include('header.php'); include('menu.php'); ?>
+<?php $page = 'news'; include('header.php'); ?>
+<body>
+    <div class="wrapper">
+        <?php include('menu.php'); ?>
         <div class="content _hide">
             <section class="news">
                 <div class="news__wrapper">

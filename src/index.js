@@ -3,8 +3,7 @@ import slider from './js/slider';
 import player from './js/player';
 import news from './js/news';
 
-document.addEventListener("DOMContentLoaded", () => {
-
+window.addEventListener('load', () => {
     const selectors = {
         slide: '.about__slide',
         container: '.about',
@@ -42,4 +41,4 @@ document.addEventListener("DOMContentLoaded", () => {
     if(leftPart.classList.contains('_hide')) {
         leftPart.classList.remove('_hide');
     }
-});
+})

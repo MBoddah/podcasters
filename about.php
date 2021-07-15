@@ -1,4 +1,7 @@
-<?php $page = 'about'; include('header.php'); include('menu.php'); ?>
+<?php $page = 'about'; include('header.php'); ?>
+<body>
+    <div class="wrapper">
+        <?php include('menu.php'); ?>
         <div class="content _hide">
             <section class="about">
                 <div class="about__prev arrow">

@@ -9,7 +9,6 @@
             <li class="menu__item <?php if($page == 'about'){echo " menu__item_active";}?>"><a href="about.php">О нас</a></li>
             <li class="menu__item <?php if($page == 'podcasts'){echo " menu__item_active";}?>"><a href="podcasts.php">Выпуски</a></li>
             <li class="menu__item <?php if($page == 'news'){echo " menu__item_active";}?>"><a href="news.php">Новости</a></li>
-<!--            <li class="menu__item"><a href="">Контакты</a></li> !-->
         </ul>
     </div>
 </div>

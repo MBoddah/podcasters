@@ -294,6 +294,7 @@ body {
   position: relative;
   align-items: center;
   justify-content: center;
+  flex-direction: column;
   width: 100%; }
   .home *:last-child {
     margin-bottom: 2%; }
@@ -757,6 +758,32 @@ body {
     margin-top: 500px;
     padding-bottom: 25%; }
 
+.footer {
+  width: 80%;
+  display: flex;
+  justify-content: flex-end;
+  text-align: end; }
+  .footer__title {
+    font-family: "Jura", sans-serif;
+    font-size: 18px;
+    font-weight: 500;
+    color: #fff;
+    font-weight: 800; }
+  .footer__author {
+    font-style: italic;
+    font-family: "Jura", sans-serif;
+    font-size: 16px;
+    font-weight: 300;
+    color: #bbb; }
+  .footer__email {
+    font-style: italic;
+    font-family: "Jura", sans-serif;
+    font-size: 16px;
+    font-weight: 300;
+    color: #bbb; }
+    .footer__email:hover {
+      color: white; }
+
 ._hide {
   opacity: 0;
   transform: translateX(500px); }
@@ -1024,7 +1051,11 @@ body {
   .news__coloumn {
     margin-right: 0;
     flex: 100%;
-    max-width: 100%; } }
+    max-width: 100%; }
+  .footer {
+    justify-content: center;
+    text-align: center;
+    margin-top: 50px; } }
 
 @media (max-width: 559.98px) {
   .menu__title {
