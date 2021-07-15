@@ -57,7 +57,7 @@ function slider( {
     slidesWrapper.style.overflow = 'hidden';
 
     let currentSlide = startSlideIndex - 1 || 0;
-    const width = window.getComputedStyle(slidesWrapper).width,
+    const width = window.getComputedStyle(slider).width,
         indicators = [];
     let offset = width.replace(/\px/g, '')*currentSlide;
     let timerTurn;
@@ -108,7 +108,7 @@ function slider( {
     currentSlide = showSlide(slides, currentSlide, offset, width , sliderInner, indicators)      // Shows start slide
     offset = updateOffset(currentSlide, width); 
 
-    arrowPrev.addEventListener('click', () =>{                                                             // Activates slider controls
+    arrowPrev.addEventListener('click', () =>{                                                           // Activates slider controls
         currentSlide = showSlide(slides, --currentSlide, offset, width , sliderInner, indicators)
         offset = updateOffset(currentSlide, width);
         if (activateAutoTurning === true) {
@@ -138,6 +138,7 @@ function slider( {
 
     //Activate swipes
     sliderInner.addEventListener('touchstart', (event) => {
+        changedSwipeX = 0;
         startingSwipeX = getStartingSwipeX(event);
         if (activateAutoTurning === true) {
             clearInterval(timerTurn);
